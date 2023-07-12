@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Customer record</h1>
+<div class="card">
+    <div class="card-header">
+        <h4>{{ record }}</h4>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ record.email }}</h5>
+        <p class="card-text">{{ record.phone }}</p>
+        <p class="card-text">{{ record.address }}</p>
+        <p class="card-text">{{ record.city }}</p>
+        <p class="card-text">{{ record.state }}</p>
+        <p class="card-text">{{ record.zipcode }}</p>
+        <p class="card-text">{{ record.id }}</p>
+        <form method="post" action="{% url 'record_delete' record.id %}">
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+        <a href="{% url 'update_record' record.id %}" class="btn btn-primary">Update</a>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+{% endblock %}
