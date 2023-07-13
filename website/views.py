@@ -28,7 +28,13 @@ def index(request):
 
 
 def user_login(request):
-    pass
+    username = form.cleaned_data['username']
+    password = form.cleaned_data['password1']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        messages.success(request, "You have successfully Registered!")
+        return redirect("index")
 
 
 def user_logout(request):
